@@ -1,8 +1,0 @@
-version: "Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)"
-options: "e51f6a047394d2c5769d24f651e25b74f36edaa71f76e8787b662fa51bcf8159"
-build_start_time: [1742690034, 981011000]
-build_end_time: [1742690034, 991817000]
-inputs:
-  ? "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Index.noindex/Build/Intermediates.noindex/Runner.build/Debug-iphonesimulator/Runner.build/DerivedSources/GeneratedAssetSymbols.swift"
-  : !dirty [1742690029, 716851606]
-  "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/Runner/AppDelegate.swift": !dirty [1737490741, 0]
