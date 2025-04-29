@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class OverlookDeckScreen extends StatelessWidget {
-  const OverlookDeckScreen({Key? key}) : super(key: key);
+  const OverlookDeckScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

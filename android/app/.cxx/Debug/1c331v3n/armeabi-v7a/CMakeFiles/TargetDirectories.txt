@@ -1,0 +1,2 @@
+/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/android/app/.cxx/Debug/1c331v3n/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/android/app/.cxx/Debug/1c331v3n/armeabi-v7a/CMakeFiles/rebuild_cache.dir

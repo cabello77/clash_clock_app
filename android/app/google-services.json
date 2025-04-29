@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "360086510038",
+    "project_id": "clashclockapp-fa949",
+    "storage_bucket": "clashclockapp-fa949.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360086510038:android:efecdbf9f178fef944ac77",
+        "android_client_info": {
+          "package_name": "com.example.clash_clock_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdn3XrYfZkXtG4lWsE1HrlcLB_2A0BSyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360086510038:android:14b1599fb3ce738a44ac77",
+        "android_client_info": {
+          "package_name": "com.pocketclashclock.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdn3XrYfZkXtG4lWsE1HrlcLB_2A0BSyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,51 @@
+{
+  "buildCommand" : {
+    "command" : "prepareForIndexing",
+    "enableIndexBuildArena" : true,
+    "targets" : null
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "18c1723432283e0cc55f10a6dcfd9e02b835f5f63276aec8d000a1f39e912778"
+    },
+    {
+      "guid" : "18c1723432283e0cc55f10a6dcfd9e0288a783a885d8b0b3beb2e9f90bde3f49"
+    }
+  ],
+  "containerPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/Runner.xcworkspace",
+  "continueBuildingAfterErrors" : true,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "indexbuild",
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Index.noindex/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Index.noindex/Build/Products",
+      "derivedDataPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData",
+      "indexDataStoreFolderPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Index.noindex/PrecompiledHeaders",
+      "indexRegularBuildIntermediatesPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Build/Intermediates.noindex",
+      "indexRegularBuildProductsPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Build/Products",
+      "pchPath" : "/Users/juliancabello/Documents/Flutter_Projects/clash_clock_app 2/ios/.DerivedData/Runner/Index.noindex/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Debug",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO",
+          "ONLY_ACTIVE_ARCH" : "YES"
+        }
+      }
+    }
+  },
+  "qos" : "utility",
+  "schemeCommand" : "launch",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

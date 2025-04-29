@@ -1,22 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'models/pokemon_card.dart';
 
 class SelectedCardsScreen extends StatefulWidget {
-  final List<String> selectedCards;
+  final List<PokemonCard> selectedCards;
 
-  const SelectedCardsScreen({Key? key, required this.selectedCards}) : super(key: key);
+  const SelectedCardsScreen({super.key, required this.selectedCards});
 
   @override
   _SelectedCardsScreenState createState() => _SelectedCardsScreenState();
 }
 
 class _SelectedCardsScreenState extends State<SelectedCardsScreen> {
-  late List<String> _cards;
-  String _deckName = ''; // Variable to store the deck name
+  late List<PokemonCard> _cards;
+  late String _deckName;
+  final TextEditingController _deckNameController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _cards = List.from(widget.selectedCards); // Create a copy of the list
+    _cards = List.from(widget.selectedCards);
+    _initializeDeckName();
+  }
+
+  Future<void> _initializeDeckName() async {
+    final prefs = await SharedPreferences.getInstance();
+    int deckCount = prefs.getInt('deckCount') ?? 0;
+    deckCount++;
+    await prefs.setInt('deckCount', deckCount);
+    
+    setState(() {
+      _deckName = 'Deck #$deckCount';
+      _deckNameController.text = _deckName;
+    });
+  }
+
+  @override
+  void dispose() {
+    _deckNameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,6 +52,7 @@ class _SelectedCardsScreenState extends State<SelectedCardsScreen> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              controller: _deckNameController,
               decoration: const InputDecoration(
                 labelText: 'Deck Name',
                 border: OutlineInputBorder(),
@@ -42,18 +65,83 @@ class _SelectedCardsScreenState extends State<SelectedCardsScreen> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(8.0),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+                childAspectRatio: 0.7,
+              ),
               itemCount: _cards.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_cards[index]),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      setState(() {
-                        _cards.removeAt(index);
-                      });
-                    },
+                final card = _cards[index];
+                return Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                              child: card.smallImage != null
+                                ? Image.network(
+                                    card.smallImage!,
+                                    fit: BoxFit.contain,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Center(
+                                        child: Icon(
+                                          Icons.image_not_supported,
+                                          size: 50,
+                                          color: Colors.grey,
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : const Center(
+                                    child: Icon(
+                                      Icons.image_not_supported,
+                                      size: 50,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              card.name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.delete),
+                            color: Colors.red,
+                            onPressed: () {
+                              setState(() {
+                                _cards.removeAt(index);
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 );
               },
@@ -63,13 +151,19 @@ class _SelectedCardsScreenState extends State<SelectedCardsScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Implement your save functionality here
           if (_deckName.isNotEmpty) {
-            // Save the deck with _deckName and _cards
-            // For example, you could save to a database or show a confirmation dialog
-            print('Deck saved: $_deckName with cards: $_cards');
+            // Create a new deck object
+            final newDeck = {
+              'title': _deckName,
+              'wins': 0,
+              'losses': 0,
+              'pokemonTypes': _getPokemonTypes(),
+              'cards': _cards.map((card) => card.toJson()).toList(),
+            };
+            
+            // Return the new deck to the previous screen
+            Navigator.pop(context, newDeck);
           } else {
-            // Show a message to enter a deck name
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Please enter a deck name')),
             );
@@ -78,5 +172,22 @@ class _SelectedCardsScreenState extends State<SelectedCardsScreen> {
         child: const Icon(Icons.save),
       ),
     );
+  }
+
+  List<String> _getPokemonTypes() {
+    // Extract unique Pokemon types from all cards in the deck
+    Set<String> uniqueTypes = <String>{};
+    
+    for (var card in _cards) {
+      // Add all types from the card
+      uniqueTypes.addAll(card.types);
+    }
+    
+    // If no types were found, return a default type
+    if (uniqueTypes.isEmpty) {
+      return ['Normal'];
+    }
+    
+    return uniqueTypes.toList();
   }
 } 
