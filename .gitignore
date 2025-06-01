@@ -101,3 +101,18 @@ app.*.map.json
 !**/macos/**/default.pbxuser
 !**/macos/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
+# Firebase and sensitive configuration
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase_options.dart
+**/key.properties
+**/keystore.jks
+**/upload-keystore.jks
+**/key.jks
+**/app-signing.properties
+
+# Environment files
+.env
+.env.*
+*.env

@@ -175,7 +175,7 @@ class _AuthHandlerState extends State<AuthHandler> {
               isAuthenticated.value = true;
               await _setAuthStatus(true);
               navigatorKey.currentState?.pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const MyHomePage(title: 'Minimalist Clash Clock')),
+                MaterialPageRoute(builder: (context) => const MyHomePage(title: "")),
                 (Route<dynamic> route) => false,
               );
             },
